@@ -2,12 +2,6 @@
 from GeomExep import * 
 
 class Angle:
-#Important value
-    spRange : list = [360,0]
-    quar : int = 45
-    rht : int = 90
-    strht : int = 180
-    comp : int = 360
 
 #Init method
     def __init__(self,angle : int):
@@ -19,9 +13,19 @@ class Angle:
         else:
             self.angle = angle
 
+#Important value
+    spRange : list = [360,0]
+    quar : int = 45
+    rht : int = 90
+    strht : int = 180
+    comp : int = 360
+
     def __repr__(self):
         return f"Angle({self.angle})"
 
+    def __str__(self):
+        return f"{self.angle}"
+    
     ##Operator method
 
     def __add__(self,other):
@@ -62,6 +66,15 @@ class Angle:
 
 
     ##Class method
+    def AllAdd(*selfs,total : int= 0):
+        for i in selfs:
+            total += i.angle
+        return total
+
+    def AllAddList(li : list,total : int= 0):
+        for i in li:
+            total += i.angle
+        return total
 
     def rema90(self):
         return 80-self.angle
@@ -148,10 +161,25 @@ class Edge:
 
     #Class method
 
+class AngleList(Angle):
+    def __init__(self, angles : list):
+        if any(set(filter(lambda x : type(x)!=Angle,angles))):
+            anglese : list = []
+            for i in angles:
+                anglese.append(Angle(i))
+            self.angles = anglese
+        else:
+            self.angles = angles
+    
+    def __repr__(self):
+        return f"AngleList({self.angles})"
+    
+    def __str__(self):
+        return f"{self.angles}"
 
 if __name__ == "__main__":
-    #an : Angle = Angle(90)
-    #an2 : Angle = Angle(45)
-    s1 = Edge(10)
-    s2 = Edge(20,12)
-    print(s1+s2)
+    an : Angle = Angle(90)
+    an2 : Angle = Angle(45)
+    #s1 = Edge(10)
+    #s2 = Edge(20,12)
+    print(AngleList([an,an2,an]).__repr__)

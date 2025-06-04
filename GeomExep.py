@@ -24,3 +24,8 @@ class NegativeValue(Exception):
     def __init__(self, found , classies):
         message = f"{found} is a negative number.\n\t{classies} is cannot be negative"
         super().__init__(message)
+
+class MissingValue(Exception):
+    def __init__(self, found , must , classies):
+        message = f"{found} must take {must} values in list.\n\t{classies} is cannot be {found} value"
+        super().__init__(message)
