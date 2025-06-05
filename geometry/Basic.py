@@ -1,30 +1,26 @@
-##Angle class
 from GeomExep import * 
 
+##Angle class
 class Angle:
 
 #Init method
     def __init__(self,angle : int):
 
         if angle>360:
-            raise SpecifRange(angle,Angle.spRange,Angle)
+            raise SpecifRangeError(angle,Angle.spRange,Angle)
         elif angle<0:
-            raise NegativeValue(angle,Angle)
+            raise NegativeValueError(angle,Angle)
         else:
             self.angle = angle
 
 #Important value
     spRange : list = [360,0]
-    quar : int = 45
-    rht : int = 90
-    strht : int = 180
-    comp : int = 360
 
     def __repr__(self):
-        return f"Angle({self.angle})"
+        return f"{self.angle}"
 
     def __str__(self):
-        return f"{self.angle}"
+        return f"Angle({self.angle})"
     
     ##Operator method
 
@@ -71,18 +67,13 @@ class Angle:
             total += i.angle
         return total
 
-    def AllAddList(li : list,total : int= 0):
-        for i in li:
-            total += i.angle
-        return total
-
-    def rema90(self):
+    def r90(self):
         return 80-self.angle
 
-    def rema180(self):
+    def r180(self):
         return 180-self.angle
 
-    def rema360(self):
+    def r360(self):
         return 360-self.angle
 
     def whicbig(self,other):
@@ -102,84 +93,113 @@ class Angle:
             return 0
 
 class Edge:
-    #Import value
-    lo : str = "a"
-    lo1 : str = "2a"
-    lo3 : str = "a√2"
-    lo4 : str = "a√3"
-
     #Init method
-    def __init__(self,long: int,thick : int = 1):
+    def __init__(self,long):
         if long<0:
-            raise NegativeValue(long,Edge)
-        elif  thick<0:
-            raise NegativeValue(thick,Edge)
+            raise NegativeValueError(long,Edge)
         else:
             self.long = long
-            self.thick = thick
 
+    def __str__(self):
+        return f"Edge({self.long})"
+    
     def __repr__(self):
-        return f"Edge({self.long},{self.thick})"
+        return f"{self.long}"
     
     ##Operator method
 
     def __add__(self,other):
-        return [self.long + other.long,[self.thick,other.thick]]
+        return self.long + other.long
 
     def __sub__(self,other):
-        return [self.long - other.long,[self.thick,other.thick]]
+        return self.long - other.long
 
     def __mul__(self,other):
-        return [self.long * other.long,[self.thick,other.thick]]
+        return self.long * other.long
     
     def __truediv__(self, other):
-        return [self.long / other.long,[self.thick,other.thick]]
+        return self.long / other.long
     
     def __floordiv__(self, other):
-        return [self.long // other.long,[self.thick,other.thick]]
+        return self.long // other.long
     
     def __mod__(self, other):
-        return [self.long % other.long,[self.thick,other.thick]]
+        return self.long % other.long
     
     def __iadd__(self,other):
-        return [self.long + other.long,[self.thick,other.thick]]
+        return self.long + other.long
 
     def __isub__(self,other):
-        return [self.long - other.long,[self.thick,other.thick]]
+        return self.long - other.long
 
     def __imul__(self,other):
-        return [self.long * other.long,[self.thick,other.thick]]
+        return self.long * other.long
     
     def __itruediv__(self, other):
-        return [self.long / other.long,[self.thick,other.thick]]
+        return self.long / other.long
     
     def __ifloordiv__(self, other):
-        return [self.long // other.long,[self.thick,other.thick]]
+        return self.long // other.long
     
     def __imod__(self, other):
-        return [self.long % other.long,[self.thick,other.thick]]
+        return self.long % other.long
 
     #Class method
 
+#List convert angle object
 class AngleList(Angle):
+
+#Init
     def __init__(self, angles : list):
         if any(set(filter(lambda x : type(x)!=Angle,angles))):
-            anglese : list = []
+            self.angles = []
             for i in angles:
-                anglese.append(Angle(i))
-            self.angles = anglese
+                self.angles.append(Angle(i))
+            self.num = len(angles)
         else:
             self.angles = angles
-    
+            self.num = len(angles)
+#
     def __repr__(self):
-        return f"AngleList({self.angles})"
+        return f"{self.angles}"
     
     def __str__(self):
-        return f"{self.angles}"
+        return f"AngleList({self.angles})"
+    
+    def __getitem__(self,item):
+        return self.angles[item]
+    
+    def AllAdd(li : list,total : int= 0):
+        for i in li:
+            total += i.angle
+        return total
 
-if __name__ == "__main__":
-    an : Angle = Angle(90)
-    an2 : Angle = Angle(45)
-    #s1 = Edge(10)
-    #s2 = Edge(20,12)
-    print(AngleList([an,an2,an]).__repr__)
+class EdgeList(Edge):
+    
+    def __init__(self, longs : list):
+        if any(set(filter(lambda x : type(x)!=Edge,longs))):
+            self.longs = []
+            for i in longs:
+                self.longs.append(Edge(i))
+            self.num = len(longs)
+        else:
+            self.longs = longs
+            self.num = len(longs)
+
+    def __repr__(self):
+        return f"{self.longs}"
+    
+    def __str__(self):
+        return f"EdgeList({self.longs})"
+    
+    def __getitem__(self,item):
+        return self.longs[item]
+
+    def Pis(self):
+        return ((self[0].long)**2+(self[1].long)**2)
+
+#List convert angle object
+Angle.quar = Angle(45)
+Angle.rht = Angle(90)
+Angle.strht = Angle(180)
+Angle.comp  = Angle(360)
