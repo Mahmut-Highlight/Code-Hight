@@ -1,14 +1,10 @@
 from GeomExep import * 
-
 ##Angle class
 class Angle:
-
 #Init method
     def __init__(self,angle : int):
 
-        if angle>360:
-            raise SpecifRangeError(angle,Angle.spRange,Angle)
-        elif angle<0:
+        if angle<0:
             raise NegativeValueError(angle,Angle)
         else:
             self.angle = angle
@@ -60,9 +56,30 @@ class Angle:
     def __imod__(self, other):
         return self.angle % other.angle
 
+##Comparison magic methods
+
+    def __gt__(self,other):
+        if type(other)==int:
+            return self.angle > other
+        return self.angle > other.angle
+
+    def __lt__(self,other):
+        if type(other)==int:
+            return self.angle < other
+        return self.angle < other.angle
+
+    def __eq__(self,other):
+        if type(other)==int:
+            return self.angle == other
+        return self.angle == other.angle
+
+    def __ne__(self,other):
+        if type(other)==int:
+            return self.angle != other
+        return self.angle != other.angle
 
     ##Class method
-    def AllAdd(*selfs,total : int= 0):
+    def sum(*selfs,total : int= 0):
         for i in selfs:
             total += i.angle
         return total
@@ -143,22 +160,31 @@ class Edge:
     
     def __imod__(self, other):
         return self.long % other.long
+##Comparison magic methods
+
+    def __gt__(self,other):
+        return self.long > other.long
+
+    def __lt__(self,other):
+        return self.long < other.long
+
+    def __eq__(self,other):
+        return self.long == other.long
+
+    def __ne__(self,other):
+        return self.long != other.long
 
     #Class method
 
 #List convert angle object
-class AngleList(Angle):
+class AngleList:
 
 #Init
     def __init__(self, angles : list):
-        if any(set(filter(lambda x : type(x)!=Angle,angles))):
-            self.angles = []
-            for i in angles:
-                self.angles.append(Angle(i))
-            self.num = len(angles)
-        else:
-            self.angles = angles
-            self.num = len(angles)
+        self.angles = []
+        for i in angles:
+            self.angles.append(Angle(i))
+        self.num = len(angles)
 #
     def __repr__(self):
         return f"{self.angles}"
@@ -168,23 +194,34 @@ class AngleList(Angle):
     
     def __getitem__(self,item):
         return self.angles[item]
-    
-    def AllAdd(li : list,total : int= 0):
-        for i in li:
-            total += i.angle
+
+##Operator
+    def __iadd__(self,other):
+        if type(other) == list:
+            return self.angles + other
+        if type(other) == Angle:
+            return self.angles + other
+        return self.angles + other.angles
+
+##Method
+
+    def sum(self,total : Angle = 0):
+        for angl in self:
+            total += angl.angle
         return total
+
+    def append(self,*other):
+        for element in other:
+            self.angles.append(Angle(element))
+        return self
 
 class EdgeList(Edge):
     
     def __init__(self, longs : list):
-        if any(set(filter(lambda x : type(x)!=Edge,longs))):
-            self.longs = []
-            for i in longs:
-                self.longs.append(Edge(i))
-            self.num = len(longs)
-        else:
-            self.longs = longs
-            self.num = len(longs)
+        self.longs = []
+        for i in longs:
+            self.longs.append(Edge(i))
+        self.num = len(longs)
 
     def __repr__(self):
         return f"{self.longs}"
@@ -195,11 +232,21 @@ class EdgeList(Edge):
     def __getitem__(self,item):
         return self.longs[item]
 
+#Method
+    def append(self,*other):
+        for element in other:
+            self.longs.append(Angle(element))
+        return self
+
     def Pis(self):
-        return ((self[0].long)**2+(self[1].long)**2)
+        return int(((self[0].long)**2+(self[1].long)**2)**0.5)
 
 #List convert angle object
-Angle.quar = Angle(45)
-Angle.rht = Angle(90)
-Angle.strht = Angle(180)
-Angle.comp  = Angle(360)
+any = 0
+quar = 45
+rht = 90
+strht = 180
+comp  = 360
+#Anl = AngleList([quar,quar])
+#nl.append(90)
+#rint(Anl.sum())

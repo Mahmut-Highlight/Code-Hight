@@ -4,10 +4,10 @@ class Triangle:
     edgenum : int = 3
     anglenum : list = [180,0]
 
-    def __init__(self, angles : AngleList ,edges : EdgeList):
-        if angles.num!=3 or edges.num!=3:
+    def __init__(self, angles : AngleList ,edges : EdgeList,enum : int = 3, inAngle : int = 180) -> None:
+        if angles.num!=enum or edges.num!=enum:
             raise MissingValueError((angles,edges),Triangle.edgenum,Triangle)
-        elif angles.AllAdd()<180:
+        elif angles.sum()<inAngle:
             raise SpecifRangeError(angles,Triangle.anglenum,Triangle)
         else:
             self.angles = angles
@@ -27,14 +27,12 @@ class Triangle:
         else:
             raise FileNotFoundError(f"I am not found \"{keys}\"")
 
+
 class Rectangle(Triangle):
+    hipo : Angle = Angle(90)
+
     def __init__(self, angles : AngleList, edges : EdgeList):
-        if not any(filter(lambda x : x.angle==90,angles)):
-            raise NotSuitableObjectError(angles,Rectangle)
-        #elif edges:
-        #    raise
-        else:
-            super().__init__(angles,edges)
+        super().__init__(angles.append(90),edges.append(edges.Pis()),2,90)
 
     def __repr__(self):
         return f"{self.angles},{self.edges}"
@@ -42,8 +40,9 @@ class Rectangle(Triangle):
     def __str__(self):
         return f"Rectangle({self.angles},{self.edges})"
 
-anl : AngleList = AngleList([45,90,45])
-edl : EdgeList = EdgeList([4,3,5])
+
+anl : AngleList = AngleList([45,45])
+edl : EdgeList = EdgeList([4,3])
 tr : Rectangle = Rectangle(anl,edl)
-print(tr["edge"].Pis()**1/2)
+print(tr)
 #Triangle([45,90,45],[1,2,3])
