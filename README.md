@@ -5,7 +5,7 @@
 2. [Foundation](#foundation)
 
 
-### Matariels
+### Documatary
 *  Foundation for [Basic.py]()
 *  Exeption for [GeomExep.py]()
 *  Polygon for [Polygon.py]()
