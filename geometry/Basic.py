@@ -163,15 +163,23 @@ class Edge:
 ##Comparison magic methods
 
     def __gt__(self,other):
+        if type(other)==int:
+            return self.long > other
         return self.long > other.long
 
     def __lt__(self,other):
+        if type(other)==int:
+            return self.long > other
         return self.long < other.long
 
     def __eq__(self,other):
+        if type(other)==int:
+            return self.long == other
         return self.long == other.long
 
     def __ne__(self,other):
+        if type(other)==int:
+            return self.long != other
         return self.long != other.long
 
     #Class method
@@ -205,7 +213,7 @@ class AngleList:
 
 ##Method
 
-    def sum(self,total : Angle = 0):
+    def sum(self,total : int = 0):
         for angl in self:
             total += angl.angle
         return total
@@ -232,6 +240,21 @@ class EdgeList(Edge):
     def __getitem__(self,item):
         return self.longs[item]
 
+##Operator
+    def __add__(self, other):
+        if type(other) == Edge:
+            self.longs.append(other.long)
+            return self
+        elif type(other) == EdgeList:
+            return self.longs + other.longs
+
+    def __sub__(self, other): #!Error
+        pass
+        #self.longs.remove(self.longs.index())
+        #return self
+
+    def __mul__(self, other):
+        return self.longs * other
 #Method
     def append(self,*other):
         for element in other:
@@ -241,6 +264,11 @@ class EdgeList(Edge):
     def Pis(self):
         return int(((self[0].long)**2+(self[1].long)**2)**0.5)
 
+    def sum(self,total : int = 0):
+        for angl in self:
+            total += angl.long
+        return total
+
 #List convert angle object
 any = 0
 quar = 45
@@ -249,4 +277,5 @@ strht = 180
 comp  = 360
 #Anl = AngleList([quar,quar])
 #nl.append(90)
-#rint(Anl.sum())
+#print(EdgeList([21,32,53])*2)
+print(EdgeList([1,3,4,5]))
