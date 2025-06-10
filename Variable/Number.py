@@ -1,5 +1,5 @@
 class Decimal:
-    def __init__(self, number) -> None:
+    def __init__(self, number, up : int = 0) -> None:
         number : list = str(number).split(".")
         self.value,self.up = Decimal.nummag(number[0],number[1])
 
@@ -32,13 +32,22 @@ class Decimal:
         return self
 
     def upEqual(self,other): ##Up is equal
-        sup = self.getup()
-        oup = other.getup()
+        sup = self.getup()[1]
+        oup = other.getup()[1]
         if sup == oup:
             return 0
         else:
-            return sup[1]-oup[1]
+            return sup-oup
 
-#n = Decimal(2.12)
+    def allin(self):
+        return self.getup()[0]**-self.getup()[1]
+
+    def __add__(self,other):
+        if not upEqual(self,other):
+            return Decimal(int(self.value)+int(other.value)*self.getup())
+
+
+upEqual = Decimal.upEqual
+n = Decimal(11.12)
 n1 = Decimal(23.2)
-print(n1)
+print(n.allin())

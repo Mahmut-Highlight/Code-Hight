@@ -258,7 +258,7 @@ class EdgeList(Edge):
 #Method
     def append(self,*other):
         for element in other:
-            self.longs.append(Angle(element))
+            self.longs.append(Edge(element))
         return self
 
     def Pis(self):
@@ -275,7 +275,8 @@ quar = 45
 rht = 90
 strht = 180
 comp  = 360
-#Anl = AngleList([quar,quar])
-#nl.append(90)
-#print(EdgeList([21,32,53])*2)
-print(EdgeList([1,3,4,5]))
+if __name__ == "__main__":
+    #Anl = AngleList([quar,quar])
+    #nl.append(90)
+    #print(EdgeList([21,32,53])*2)
+    print(EdgeList([1,3,4,5]))

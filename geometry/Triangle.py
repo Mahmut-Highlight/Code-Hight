@@ -25,8 +25,10 @@ class Triangle:
         elif keys == "edge":
             return self.edges
         else:
-            raise FileNotFoundError(f"I am not found \"{keys}\"")
+            raise Exception(f"I am not found \"{keys}\"")
 
+    def primeter(self):
+        return self.edges.sum()
 
 class Rectangle(Triangle):
     hipo : Angle = Angle(90)
@@ -40,9 +42,12 @@ class Rectangle(Triangle):
     def __str__(self):
         return f"Rectangle({self.angles},{self.edges})"
 
+    def area(self):
+        return self.edges[2]*self.edges[0]/2
 
-anl : AngleList = AngleList([45,45])
-edl : EdgeList = EdgeList([4,3])
-tr : Rectangle = Rectangle(anl,edl)
-print(tr)
-#Triangle([45,90,45],[1,2,3])
+if __name__ == "__main__":
+    anl : AngleList = AngleList([45,45])
+    edl : EdgeList = EdgeList([4,3])
+    tr : Rectangle = Rectangle(anl,edl)
+    print(tr.area())
+    #Triangle([45,90,45],[1,2,3])

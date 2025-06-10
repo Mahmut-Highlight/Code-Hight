@@ -1,0 +1,17 @@
+from turtle import Turtle
+from Basic import Angle
+a90 : Angle = Angle(90)
+a60 : Angle = Angle(60)
+a45 : Angle = Angle(45)
+a30 : Angle = Angle(30)
+a15 : Angle = Angle(15)
+t = Turtle()
+t.forward((3)*50)
+t.left(a60.r180())
+t.forward((3*2)*50)
+t.left(a30.r180())
+t.forward((3*(3**0.5))*50)
+t.left(a90.r180())
+t.forward((3)*50)
+t.left(a45.r180())
+t.forward(3*(2**0.5)*50)
