@@ -1,9 +1,7 @@
 from GeomExep import * 
-##Angle class
 class Angle:
 #Init method
     def __init__(self,angle : int):
-
         if angle<0:
             raise NegativeValueError(angle,Angle)
         else:
@@ -184,6 +182,9 @@ class Edge:
 
     #Class method
 
+    def pis(self,other):
+        return (self.long**2+other.long**2)**0.5
+
 #List convert angle object
 class AngleList:
 
@@ -204,12 +205,44 @@ class AngleList:
         return self.angles[item]
 
 ##Operator
+    def __add__(self,other):
+        return list(map(lambda x: x.angle + other,self.angles))
+
+    def __sub__(self,other):
+        return list(map(lambda x: x.angle - other,self.angles))
+
+    def __mul__(self,other):
+        return list(map(lambda x: x.angle * other,self.angles))
+    
+    def __truediv__(self, other):
+        return list(map(lambda x: x.angle / other,self.angles))
+    
+    def __floordiv__(self, other):
+        return list(map(lambda x: x.angle // other,self.angles))
+    
+    def __mod__(self, other):
+        return list(map(lambda x: x.angle % other,self.angles))
+    
+    def __pow__(self,other):
+        return list(map(lambda x: x.angle ** other,self.angles))
+    
     def __iadd__(self,other):
-        if type(other) == list:
-            return self.angles + other
-        if type(other) == Angle:
-            return self.angles + other
-        return self.angles + other.angles
+        return list(map(lambda x: x.angle + other,self.angles))
+
+    def __isub__(self,other):
+        return list(map(lambda x: x.angle - other,self.angles))
+
+    def __imul__(self,other):
+        return list(map(lambda x: x.angle * other,self.angles))
+    
+    def __itruediv__(self, other):
+        return list(map(lambda x: x.angle / other,self.angles))
+    
+    def __ifloordiv__(self, other):
+        return list(map(lambda x: x.angle // other,self.angles))
+    
+    def __imod__(self, other):
+        return list(map(lambda x: x.angle % other,self.angles))
 
 ##Method
 
@@ -224,7 +257,9 @@ class AngleList:
         return self
 
 class EdgeList(Edge):
-    
+    """
+    Edge List use for a many edge.
+    """
     def __init__(self, longs : list):
         self.longs = []
         for i in longs:
@@ -241,33 +276,61 @@ class EdgeList(Edge):
         return self.longs[item]
 
 ##Operator
-    def __add__(self, other):
-        if type(other) == Edge:
-            self.longs.append(other.long)
-            return self
-        elif type(other) == EdgeList:
-            return self.longs + other.longs
+    def __add__(self,other):
+        return list(map(lambda x: x.long + other,self.longs))
 
-    def __sub__(self, other): #!Error
-        pass
-        #self.longs.remove(self.longs.index())
-        #return self
+    def __sub__(self,other):
+        return list(map(lambda x: x.long - other,self.longs))
 
-    def __mul__(self, other):
-        return self.longs * other
+    def __mul__(self,other):
+        return list(map(lambda x: x.long * other,self.longs))
+    
+    def __truediv__(self, other):
+        return list(map(lambda x: x.long / other,self.longs))
+    
+    def __floordiv__(self, other):
+        return list(map(lambda x: x.long // other,self.longs))
+    
+    def __mod__(self, other):
+        return list(map(lambda x: x.long % other,self.longs))
+    
+    def __pow__(self,other):
+        return list(map(lambda x: x.long ** other,self.longs))
+    
+    def __iadd__(self,other):
+        return list(map(lambda x: x.long + other,self.longs))
+
+    def __isub__(self,other):
+        return list(map(lambda x: x.long - other,self.longs))
+
+    def __imul__(self,other):
+        return list(map(lambda x: x.long * other,self.longs))
+    
+    def __itruediv__(self, other):
+        return list(map(lambda x: x.long / other,self.longs))
+    
+    def __ifloordiv__(self, other):
+        return list(map(lambda x: x.long // other,self.longs))
+    
+    def __imod__(self, other):
+        return list(map(lambda x: x.long % other,self.longs))
+
 #Method
     def append(self,*other):
         for element in other:
             self.longs.append(Edge(element))
         return self
 
-    def Pis(self):
-        return int(((self[0].long)**2+(self[1].long)**2)**0.5)
+    def pis(self):
+        return self[0].pis(self[1])
 
     def sum(self,total : int = 0):
         for angl in self:
             total += angl.long
         return total
+
+    def sin(self,st=0):
+        return self[st]/self[-1]
 
 #List convert angle object
 any = 0
@@ -276,7 +339,6 @@ rht = 90
 strht = 180
 comp  = 360
 if __name__ == "__main__":
-    #Anl = AngleList([quar,quar])
-    #nl.append(90)
-    #print(EdgeList([21,32,53])*2)
-    print(EdgeList([1,3,4,5]))
+    Edl : EdgeList = EdgeList([3,4,5])
+    Anl : AngleList = AngleList([45,45,90])
+    print(Edl.sin(1))
