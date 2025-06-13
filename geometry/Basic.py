@@ -13,6 +13,12 @@ class Angle:
     def __repr__(self):
         return f"{self.angle}"
 
+    def __int__(self):
+        return int(self.angle)
+
+    def __float__(self):
+        return float(self.angle)
+
     def __str__(self):
         return f"Angle({self.angle})"
     
@@ -118,6 +124,12 @@ class Edge:
     def __str__(self):
         return f"Edge({self.long})"
     
+    def __int__(self):
+        return int(self.long)
+
+    def __float__(self):
+        return float(self.long)
+
     def __repr__(self):
         return f"{self.long}"
     
@@ -167,7 +179,7 @@ class Edge:
 
     def __lt__(self,other):
         if type(other)==int:
-            return self.long > other
+            return self.long < other
         return self.long < other.long
 
     def __eq__(self,other):
@@ -200,6 +212,9 @@ class AngleList:
     
     def __str__(self):
         return f"AngleList({self.angles})"
+    
+    def __list__(self):
+        return self.angles
     
     def __getitem__(self,item):
         return self.angles[item]
@@ -256,7 +271,7 @@ class AngleList:
             self.angles.append(Angle(element))
         return self
 
-class EdgeList(Edge):
+class EdgeList:
     """
     Edge List use for a many edge.
     """
@@ -271,6 +286,9 @@ class EdgeList(Edge):
     
     def __str__(self):
         return f"EdgeList({self.longs})"
+    
+    def __list__(self):
+        return self.angles
     
     def __getitem__(self,item):
         return self.longs[item]
