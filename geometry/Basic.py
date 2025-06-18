@@ -83,8 +83,8 @@ class Angle:
         return self.angle != other.angle
 
     ##Class method
-    def sum(*selfs,total : int= 0):
-        for i in selfs:
+    def sum(*sel,total : int= 0):
+        for i in sel:
             total += i.angle
         return total
 
@@ -96,12 +96,6 @@ class Angle:
 
     def r360(self):
         return 360-self.angle
-
-    def whicbig(self,other):
-        if self.angle >= other.angle:
-            return True
-        else:
-            return False
 
     def howa(self):
         if self.angle==360:
@@ -219,6 +213,12 @@ class AngleList:
     def __getitem__(self,item):
         return self.angles[item]
 
+    def __iter__(self):
+        return iter(self.angles)
+    
+    def __next__(self):
+        return next(self.angles)
+
 ##Operator
     def __add__(self,other):
         return list(map(lambda x: x.angle + other,self.angles))
@@ -271,6 +271,10 @@ class AngleList:
             self.angles.append(Angle(element))
         return self
 
+    def insert(self, index,other):
+        self.angles.insert(index, Angle(other))
+        return self
+
 class EdgeList:
     """
     Edge List use for a many edge.
@@ -292,6 +296,12 @@ class EdgeList:
     
     def __getitem__(self,item):
         return self.longs[item]
+
+    def __iter__(self):
+        return iter(self.longs)
+
+    def __next__(self):
+        return next(self.longs)
 
 ##Operator
     def __add__(self,other):
@@ -338,6 +348,10 @@ class EdgeList:
         for element in other:
             self.longs.append(Edge(element))
         return self
+    
+    def insert(self, index,other):
+        self.longs.insert(index, Edge(other))
+        return self
 
     def pis(self):
         return self[0].pis(self[1])
@@ -359,4 +373,7 @@ comp  = 360
 if __name__ == "__main__":
     Edl : EdgeList = EdgeList([3,4,5])
     Anl : AngleList = AngleList([45,45,90])
-    print(Edl.sin(1))
+    for i in Edl:
+        print(i)
+    for i in Anl:
+        print(i)

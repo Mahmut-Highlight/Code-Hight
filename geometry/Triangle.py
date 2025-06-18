@@ -1,10 +1,10 @@
 from Basic import *
 class Triangle:
     edgenum : int = 3
-    anglenum : list = [180,0]
+    anglenum : list = 3
 
 ##Apperance
-    def __init__(self,edges : EdgeList, angles : AngleList ,enum : int = 3, inAngle : int = 180) -> None:
+    def __init__(self,edges : EdgeList, angles : AngleList) -> None:
         self.angles = angles
         self.edges = edges
 
@@ -22,10 +22,13 @@ class Triangle:
             return self.angles
         elif keys == "edge" or keys == 1:
             return self.edges
-    
+
     def __iter__(self):
-        for elm in list(zip(self.edges,self.angles)):
-            return elm
+        for i in range(self.edgenum):
+            yield self.edges[i-1],self.angles[i]
+    
+    def __len__(self):
+        return self.edgenum
 
 ##Class method
     def primeter(self):
@@ -38,7 +41,7 @@ class Rectangle(Triangle):
 
 ##Apperance
     def __init__(self , edges : EdgeList, angles : AngleList = AngleList([])):
-        super().__init__(edges.append(edges.pis()),angles.append(90),2,90)
+        super().__init__(edges.insert(1,edges.pis()),angles.append(90))
 
     def __repr__(self):
         return f"{self.angles},{self.edges}"

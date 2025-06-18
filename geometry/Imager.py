@@ -1,17 +1,27 @@
 from turtle import Turtle
-from Basic import Angle
-a90 : Angle = Angle(90)
-a60 : Angle = Angle(60)
-a45 : Angle = Angle(45)
-a30 : Angle = Angle(30)
-a15 : Angle = Angle(15)
-t = Turtle()
-t.forward((3)*50)
-t.left(a60.r180())
-t.forward((3*2)*50)
-t.left(a30.r180())
-t.forward((3*(3**0.5))*50)
-t.left(a90.r180())
-t.forward((3)*50)
-t.left(a45.r180())
-t.forward(3*(2**0.5)*50)
+from Triangle import Rectangle, EdgeList,AngleList,Triangle
+class ImagerShape:
+    def __init__(self , shape : object , turtle : Turtle = Turtle(), color : str = "black", size : int = 1):
+        self.shape = shape
+        self.color = color
+        self.size = size
+        self.turtle = turtle
+
+    def color(self, color : str):
+        self.color = color
+    
+    def size(self, size : int):
+        self.size = size
+    
+    def draw(self):
+        self.turtle.color(self.color)
+        self.turtle.pensize(self.size)
+        for e,a in zip(self.shape["edge"], self.shape["angle"]):
+            self.turtle.forward(e.long)
+            self.turtle.left(a.r180())
+        self.turtle.stamp()
+
+if __name__ == "__main__":
+    re : Triangle = Triangle(EdgeList([100, 100,100]), AngleList([60, 60, 60]))
+    turt = Turtle(visible=False)
+    ImagerShape(re, turt, "black", 4).draw()
