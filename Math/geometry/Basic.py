@@ -304,6 +304,7 @@ class EdgeList:
         return next(self.longs)
 
 ##Operator
+
     def __add__(self,other):
         return list(map(lambda x: x.long + other,self.longs))
 
@@ -371,9 +372,4 @@ rht = 90
 strht = 180
 comp  = 360
 if __name__ == "__main__":
-    Edl : EdgeList = EdgeList([3,4,5])
-    Anl : AngleList = AngleList([45,45,90])
-    for i in Edl:
-        print(i)
-    for i in Anl:
-        print(i)
+    pass

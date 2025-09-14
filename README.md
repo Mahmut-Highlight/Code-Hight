@@ -1,6 +1,34 @@
-# Python Math High information
+# Python Code High information
+last update 14.09.2025
+
 ---
 ## Content
++ **[project]()**
++ **[math](#math)**
++ **[chemeristry]()**
+___
+## Matariel
+- Math
+    + Geometry
+        *  Foundation for [Basic.py]()
+        *  Exeption for [GeomExep.py]()
+        *  Polygon for [Polygon.py]()
+    + Variable
+        * Number for [Number.py]()
+        * SqRt for [SqRt.py]()
+        * SqRt for [Fracation.py]()
+- Chemistry
+    * element and fearute for element.py
+___
+### What's project purporse?
+This project,I created for high school education ,I share a lot of course information and use it for my assignments.
+#### Which lesson contain in?
+Ussally, science and primarily math and a few GUI for easer job contain
+### What different others?
+using different numerical operations in other projects
+### 
+___
+## Math
 * **[Matariel](#Files)**
 * **[Foundation](#foundation)**
 * **[Angle & Edge](#angle--edge-module)**
@@ -10,17 +38,7 @@
     + [Edge]()
 * **[Triangle & Poygon]()**
 * **[Imager]()**
-___
-## Matariel
-+ Geometry
-    *  Foundation for [Basic.py]()
-    *  Exeption for [GeomExep.py]()
-    *  Polygon for [Polygon.py]()
-+ Variable
-    * Number for [Number.py]()
-    * SqRt for [SqRt.py]()
-    * SqRt for [Fracation.py]()
-___
+
 ## Foundation
 **What's is angle?**
 
@@ -37,7 +55,7 @@ surfaces of a shape.
 a geometric figure such as a square, triangle, or rectangle.
 ___
 ## Angle & Edge module
-+ ### <x style="color : Red;">Angle</code>
++ ### Angle
     #### What does the Angle class do?
     + **drawing shape**
     Each shape contains an angle so this class on the turtle can draw
@@ -74,7 +92,7 @@ ___
         __Example__
         * four operations:
             
-            >__Not!!__<br>If you want to add any number, the result will be given 
+            >__Important!!__<br>If you want to add any number, the result will be given 
             in the int class in the demo version.
 
             I added more operations to avoid making mistakes in the 
@@ -103,9 +121,10 @@ ___
 
             and I am add logical operator
     + #### List process
-
+        **AngleList Module** write for this task. It contains simpler operators and methods,but it slows down your work just as much.
+        ...
 ___
-### <code style="color : Aqua">Imager</code>
+### Imager
 **What does imeger do?**
 
 Now that we know how to manipulate shapes, we can display objects. There are two ways to do it.
@@ -113,6 +132,8 @@ Now that we know how to manipulate shapes, we can display objects. There are two
 |-|-|-|
 |![]()|first method|module built on turtle library|
 |![]()|second method|module built on matplotlib library|
+
+devoleper...
 
 
 ###### Contiune this project
